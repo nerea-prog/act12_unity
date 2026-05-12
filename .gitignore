@@ -1,0 +1,50 @@
+# =============== UNITY ===============
+
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+
+# Memory captures
+MemoryCaptures/
+
+# Asset meta data should NOT be ignored
+!Assets/**/*.meta
+!Packages/**/*.meta
+
+# Auto-generated VS / Rider / VSCode files
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+
+# Unity cache
+Library/
+Temp/
+
+# Crash reports
+sysinfo.txt
+
+# Builds
+*.apk
+*.aab
+*.unitypackage
+
+# OS files
+.DS_Store
+<<<<<<< HEAD
+Thumbs.db
+=======
+Thumbs.db
+>>>>>>> 2423582 (joc agafant monedes)
