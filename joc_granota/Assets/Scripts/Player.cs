@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
-    public float speed = 5;
+    public float speed = 2;
     private Rigidbody2D rb;
 
     private float move;
 
-    public float jumpForce = 4;
+    public float jumpForce = 7;
     private bool isGrounded;
     public Transform groundCheck;
     public float groundRadius = 0.1f;
@@ -65,6 +65,23 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Spikes")) // Si el jugador colisiona con los pinchos
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reinicia la escena actual para que el jugador vuelva a empezar desde el principio
+        }
+
+        if (collision.transform.CompareTag("barrel"))
+        {
+            Vector2 knockbackDirection = (rb.position - (Vector2)collision.transform.position).normalized; // Calcula la dirección del knockback desde el barril hacia el jugador
+            rb.linearVelocity = Vector2.zero; // Resetea la velocidad del jugador para que el knockback sea consistente
+            rb.AddForce(knockbackDirection * 3, ForceMode2D.Impulse); // Aplica una fuerza de impulso en la dirección del knockback para empujar al jugador hacia atrás
+
+            BoxCollider2D[] colliders = collision.gameObject.GetComponents<BoxCollider2D>(); // Obtiene los colliders del barril para ignorar la colisión entre el jugador y el barril durante un corto período de tiempo
+
+            foreach (BoxCollider2D collider in colliders)
+            {
+                collider.enabled = false; // Desactiva el collider del barril para que el jugador no colisione
+            }
+
+            collision.GetComponent<Animator>().enabled = true; // Activa la animación de explosión del barril
+            Destroy(collision.gameObject, 0.5f); // Destruye el barril
         }
     }
 }
