@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     private int coins;
     public TMP_Text textCoins;
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,14 +30,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       move = Input.GetAxisRaw("Horizontal"); // Coger teclas definidas de Unity en horizontal (A y D o flechas)
+        move = Input.GetAxisRaw("Horizontal"); // Coger teclas definidas de Unity en horizontal (A y D o flechas)
         rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
-        if(move != 0)
+        if (move != 0)
         {
-            transform.localScale = new Vector3(Mathf.Sign(move),1,1); // Cambia la escala del jugador para que mire a la dirección en la que se mueve
+            transform.localScale = new Vector3(Mathf.Sign(move), 1, 1); // Cambia la escala del jugador para que mire a la dirección en la que se mueve
         }
 
-        if(Input.GetButtonDown("Jump") && isGrounded) // Si se pulsa el botón de salto y el jugador está en el suelo
+        if (Input.GetButtonDown("Jump") && isGrounded) // Si se pulsa el botón de salto y el jugador está en el suelo
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // Añade una fuerza hacia arriba para saltar
         }
